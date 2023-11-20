@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_thongKe"
+        android:icon="@drawable/round_bar_chart_24"
+        android:title="Thống kê" />
+    <item
+        android:id="@+id/action_comics"
+        android:icon="@drawable/outline_format_list_bulleted_24"
+        android:title="Danh sách" />
+    <item
+        android:id="@+id/action_user"
+        android:icon="@drawable/round_people_alt_24"
+        android:title="Người dùng" />
+    <item
+        android:id="@+id/action_account"
+        android:icon="@drawable/outline_manage_accounts_24"
+        android:title="Tài khoản" />
+</menu>

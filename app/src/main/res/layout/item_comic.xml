@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="135dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="5dp"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="5dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/imageComic"
+            android:layout_width="130dp"
+            android:layout_height="195dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/tap_1"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/nameComic"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/worksans"
+        android:gravity="center"
+        android:text="Lạc vào công viên khủng long"
+        android:textColor="@color/black" />
+
+</LinearLayout>

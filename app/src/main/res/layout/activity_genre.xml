@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Admin.ComicActivity">
+    <RelativeLayout
+        android:id="@+id/ag_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_ag_exit"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_arrow_back_24_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/worksans"
+            android:text="Chi tiết thể loại"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/ag_image_genre"
+        android:layout_width="200dp"
+        android:layout_below="@+id/ag_view1"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/tap_1" />
+    <TextView
+        android:id="@+id/tv_ag_ten"
+        android:fontFamily="@font/worksans"
+        android:textSize="24sp"
+        android:layout_below="@+id/ag_image_genre"
+        android:textColor="@color/black"
+        android:text="Tập 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+    <ScrollView
+        android:layout_below="@id/tv_ag_ten"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp">
+                <TextView
+                    android:id="@+id/txt_mota_ag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Mô tả: "/>
+                <TextView
+                    android:id="@+id/tv_moTa_ag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/gray"
+                    android:text="Mô tả: "/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp">
+                <TextView
+                    android:id="@+id/txt_sl_ag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:text="Số lượng truyện: "/>
+                <TextView
+                    android:id="@+id/tv_sl_ag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:layout_marginTop="10dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/gray"
+                    android:text="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/btn_sua_ag"
+        android:text="Cập nhật"
+        android:fontFamily="@font/worksans"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/main"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_xoa_ag"
+        android:text="Xóa"
+        android:textColor="@color/white"
+        android:fontFamily="@font/worksans"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/red"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Activity.Admin.AddComicActivity">
+
+    <RelativeLayout
+        android:id="@+id/aac_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_exit_aac"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_arrow_back_24_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/worksans"
+            android:text="Thêm truyện"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/aac_view1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_comic"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/add_image" />
+
+            <Spinner
+                android:id="@+id/spn_genre"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/image_comic"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bgr_spn" />
+
+            <Button
+                android:id="@+id/btn_addG_aac"
+                android:text="Thêm loại"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/worksans"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/green"
+                android:layout_toRightOf="@id/spn_genre"
+                android:layout_below="@+id/image_comic"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edL_aac_tenTruyen"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spn_genre"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/worksans">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_aac_tenTruyen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:hint="Tên truyện" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edL_aac_moTa"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edL_aac_tenTruyen"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/worksans">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_aac_moTa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:hint="Mô tả" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edL_aac_namXuatBan"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edL_aac_moTa"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/worksans">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_aac_namXuatBan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:hint="Năm xuất bản" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edL_aac_tacGia"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edL_aac_namXuatBan"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/worksans">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_aac_tacGia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:hint="Tác giả" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edL_aac_linkTruyen"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edL_aac_tacGia"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/worksans">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ed_aac_linkTruyen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/worksans"
+                    android:hint="Link truyện" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_aac_themAnh"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="Ảnh truyện"
+                android:layout_below="@id/edL_aac_linkTruyen"
+                android:fontFamily="@font/worksans"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/tv_aac_themAnh"/>
+            <Button
+                android:id="@+id/btn_xacNhan_aac"
+                android:text="Xác nhận"
+                android:fontFamily="@font/worksans"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/main"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/recyclerView"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_huy_aac"
+                android:text="Hủy"
+                android:textColor="@color/white"
+                android:fontFamily="@font/worksans"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/recyclerView"
+                android:backgroundTint="@color/red"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="20dp">
+    <TextView
+        android:id="@+id/tv_tieuDe_dal"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/worksans"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:textSize="24dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Cập nhật người dùng"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edL_dlu_hvt"
+        android:layout_marginBottom="10dp"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_below="@+id/tv_tieuDe_dal"
+        android:fontFamily="@font/worksans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_dlu_hvt"
+            android:hint="Họ và tên"
+            android:fontFamily="@font/worksans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edL_dlu_email"
+        android:layout_marginBottom="10dp"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_below="@+id/edL_dlu_hvt"
+        android:fontFamily="@font/worksans"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_dlu_email"
+            android:hint="Email"
+            android:fontFamily="@font/worksans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btn_xacNhan_dlu"
+        android:text="Xác nhận"
+        android:fontFamily="@font/worksans"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/main"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edL_dlu_email"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btn_huy_dlu"
+        android:text="Hủy"
+        android:textColor="@color/white"
+        android:fontFamily="@font/worksans"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/edL_dlu_email"
+        android:backgroundTint="@color/red"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

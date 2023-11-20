@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    tools:context=".Activity.SignInActivity">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="MonComics"
+        android:fontFamily="@font/worksans"
+        android:textColor="@color/main"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Ứng dụng đọc truyện Doraemon miễn phí"
+        android:fontFamily="@font/worksans"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="30dp"
+        android:text="Đăng nhập ngay"
+        android:fontFamily="@font/worksans"
+        android:textColor="@color/main"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edL_taiKhoan"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/main"
+        app:startIconDrawable="@drawable/baseline_person_24"
+        app:startIconTint="@color/main">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_taiKhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tài khoản"
+            android:maxLength="20"
+            android:fontFamily="@font/worksans"
+            android:textSize="18dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edL_matKhau"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/main"
+        app:startIconDrawable="@drawable/baseline_lock_24"
+        app:startIconTint="@color/main">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_matKhau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:fontFamily="@font/worksans"
+            android:maxLength="20"
+            android:textSize="18dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/chk_nhoTaiKhoan"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:fontFamily="@font/worksans"
+        android:layout_marginTop="10dp"
+        android:text="Nhớ tài khoản"
+        android:textSize="17dp" />
+    <Button
+        android:id="@+id/btn_dangNhap"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:text="ĐĂNG NHẬP"
+        android:fontFamily="@font/worksans"
+        android:backgroundTint="@color/main"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="@color/white"/>
+    <LinearLayout
+        android:layout_marginTop="130dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/worksans"
+            android:text="Bạn chưa có tài khoản?"/>
+        <TextView
+            android:id="@+id/btn_redangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:textColor="@color/main"
+            android:fontFamily="@font/worksans"
+            android:text="Đăng ký ngay"/>
+    </LinearLayout>
+</LinearLayout>

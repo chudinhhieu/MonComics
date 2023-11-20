@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main">
+
+        <TextView
+            android:id="@+id/tv_fa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/worksans"
+            android:text="Tài khoản"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rounded_background"
+        android:paddingHorizontal="16dp">
+
+        <FrameLayout
+            android:id="@+id/frl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:src="@drawable/gamer" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/btn_edit_avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:src="@drawable/change_avatar" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/frl"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="5dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_hvt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/worksans"
+                    android:text="Họ và tên"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_hvt"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/worksans"
+                    android:text="Chu Đình Hiếu"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/btn_edit_fullname"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/round_edit_24" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_fullname"
+            android:id="@+id/view_email"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardMaxElevation="5dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_mail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/worksans"
+                    android:text="Email"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_mail"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/worksans"
+                    android:text="chudinhhieuytty@gmail.com"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/btn_edit_email"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/round_edit_24" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/btn_delete_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnDMK"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/worksans"
+            android:text="Xóa tài khoản"
+            android:textColor="@color/red"
+            android:textSize="20dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/btnDMK"
+            android:layout_above="@id/btnSignOut"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:backgroundTint="@color/main"
+            app:cardMaxElevation="5dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Đổi mật khẩu"
+            android:textColor="@color/white"
+            android:fontFamily="@font/worksans"
+            />
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/btnSignOut"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:backgroundTint="@color/red"
+            app:cardMaxElevation="5dp"
+            android:layout_alignParentBottom="true"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Đăng xuất"
+                android:textColor="@color/white"
+                android:fontFamily="@font/worksans"
+                />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</FrameLayout>

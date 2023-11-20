@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar_ucm"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/gamer"/>
+    <RelativeLayout
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@id/avatar_ucm"
+        android:background="@drawable/bo_goc"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/ten_ucm"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chu Đình Hiếu"/>
+        <TextView
+            android:id="@+id/noidung_ucm"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_below="@id/ten_ucm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Truyện siêu hay luôn mọi người ơi"/>
+        <TextView
+            android:id="@+id/time_ucm"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 giờ"/>
+    </RelativeLayout>
+</RelativeLayout>
