@@ -21,6 +21,7 @@ import com.example.doraemoncomics.Activity.User.ReadActivity;
 import com.example.doraemoncomics.Api.ApiService;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
+import com.example.doraemoncomics.Models.Favorite;
 import com.example.doraemoncomics.Models.Genre;
 import com.example.doraemoncomics.Models.User;
 import com.example.doraemoncomics.R;
@@ -34,13 +35,15 @@ import retrofit2.Response;
 
 public class ComicActivity extends AppCompatActivity {
     private Comic comic;
-    private ImageView btn_exit,img_anhBia;
-    private TextView tv_ten,tv_theLoai,tv_moTa,tv_NXB,tv_TacGia,tv_slbl;
+    private ImageView btn_exit,img_anhBia,img_fvr;
+    private TextView tv_ten,tv_theLoai,tv_moTa,tv_NXB,tv_TacGia,tv_slbl,tv_slyt;
     private Button btn_capNhat,btn_xoa,btn_doc,btn_xemTruoc;
     private Genre genre;
-    private Comic comicEdit;
     private Intent intent;
-    private LinearLayout btn_nextBinhLuan;
+    private LinearLayout btn_nextBinhLuan,btn_yt;
+    private Favorite favorite;
+    private String savedUserId;
+    private List<Favorite> favoriteList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,16 +53,20 @@ public class ComicActivity extends AppCompatActivity {
         tv_ten = findViewById(R.id.tv_ac_ten);
         tv_theLoai = findViewById(R.id.tv_theLoai);
         tv_moTa = findViewById(R.id.tv_moTa);
+        tv_slyt = findViewById(R.id.tv_slyt);
         tv_NXB = findViewById(R.id.tv_NXB);
         tv_TacGia = findViewById(R.id.tv_tacGia);
         btn_capNhat = findViewById(R.id.btn_sua_ac);
+        btn_yt = findViewById(R.id.btn_yt);
         tv_slbl = findViewById(R.id.tv_slbl);
+        img_fvr = findViewById(R.id.img_fvr);
         btn_xoa = findViewById(R.id.btn_xoa_ac);
         btn_nextBinhLuan = findViewById(R.id.btn_nextBinhLuan);
         btn_xemTruoc = findViewById(R.id.btn_xemTruoc_ac);
         btn_doc = findViewById(R.id.btn_doc_ac);
+
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String savedUserId = sharedPreferences.getString("userId","1");
+        savedUserId = sharedPreferences.getString("userId","1");
         String savedUsername = sharedPreferences.getString("username","chuhieu");
         if (!savedUsername.equals("admin")){
             btn_capNhat.setVisibility(View.GONE);
@@ -70,6 +77,40 @@ public class ComicActivity extends AppCompatActivity {
         }
         intent = getIntent();
         loadData();
+        btn_yt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if (favorite == null){
+                   ApiService.apiService.postFavorite(new Favorite(savedUserId,comic.get_id())).enqueue(new Callback<Void>() {
+                       @Override
+                       public void onResponse(Call<Void> call, Response<Void> response) {
+                           Toast.makeText(ComicActivity.this, "Đã yêu thích!", Toast.LENGTH_SHORT).show();
+                           loadDataFavorite();
+                           loadListFavorite();
+                       }
+
+                       @Override
+                       public void onFailure(Call<Void> call, Throwable t) {
+                           Toast.makeText(ComicActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
+                       }
+                   });
+               }else{
+                    ApiService.apiService.deleteFavorite(favorite.get_id()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            Toast.makeText(ComicActivity.this, "Đã bỏ yêu thích!", Toast.LENGTH_SHORT).show();
+                            loadDataFavorite();
+                            loadListFavorite();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(ComicActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+               }
+            }
+        });
         btn_xemTruoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,18 +210,9 @@ public class ComicActivity extends AppCompatActivity {
                 Glide.with(ComicActivity.this)
                         .load(MainActivity.ip_pixe4_image+"comic_images/cover_images/"+comic.getCoverImage())
                         .into(img_anhBia);
-                ApiService.apiService.getGenre(comic.getIdGenre()).enqueue(new Callback<Genre>() {
-                    @Override
-                    public void onResponse(Call<Genre> call, Response<Genre> response) {
-                        genre = response.body();
-                        tv_theLoai.setText(genre.getName());
-                    }
-
-                    @Override
-                    public void onFailure(Call<Genre> call, Throwable t) {
-                        Log.d("onFailure", "onFailure: "+t.getMessage());
-                    }
-                });
+                setTenTheLoai();
+                loadDataFavorite();
+                loadListFavorite();
             }
 
             @Override
@@ -190,6 +222,54 @@ public class ComicActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void setTenTheLoai() {
+        ApiService.apiService.getGenre(comic.getIdGenre()).enqueue(new Callback<Genre>() {
+            @Override
+            public void onResponse(Call<Genre> call, Response<Genre> response) {
+                genre = response.body();
+                tv_theLoai.setText(genre.getName());
+            }
+
+            @Override
+            public void onFailure(Call<Genre> call, Throwable t) {
+                Log.d("onFailure", "onFailure: "+t.getMessage());
+            }
+        });
+    }
+    private void loadListFavorite(){
+        ApiService.apiService.getListFavoriteComic(comic.get_id()).enqueue(new Callback<List<Favorite>>() {
+            @Override
+            public void onResponse(Call<List<Favorite>> call, Response<List<Favorite>> response) {
+                int sl = response.body().size();
+                tv_slyt.setText(sl+" yêu thích");
+            }
+
+            @Override
+            public void onFailure(Call<List<Favorite>> call, Throwable t) {
+                Toast.makeText(ComicActivity.this, "Lấy danh sách yêu thích thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadDataFavorite() {
+        ApiService.apiService.checkFavorite(savedUserId,comic.get_id()).enqueue(new Callback<Favorite>() {
+            @Override
+            public void onResponse(Call<Favorite> call, Response<Favorite> response) {
+                favorite = response.body();
+                if (favorite == null){
+                    img_fvr.setImageResource(R.drawable.outline_favorite_border_24);
+                }else {
+                    img_fvr.setImageResource(R.drawable.baseline_favorite_24);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Favorite> call, Throwable t) {
+                Toast.makeText(ComicActivity.this, "Lấy dữ liệu yêu thích thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

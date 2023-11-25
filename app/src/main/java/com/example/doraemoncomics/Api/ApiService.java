@@ -3,6 +3,7 @@ package com.example.doraemoncomics.Api;
 import com.example.doraemoncomics.Activity.User.MainActivity;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
+import com.example.doraemoncomics.Models.Favorite;
 import com.example.doraemoncomics.Models.Genre;
 import com.example.doraemoncomics.Models.User;
 import com.google.gson.Gson;
@@ -119,4 +120,18 @@ public interface ApiService {
     Call<Comment> patchComment(@Path("id_cm") String id_cm,@Body Comment comment);
     @DELETE("comments/delete/{id_cm}")
     Call<Comment> deleteComment(@Path("id_cm") String id_cm);
+
+    //Favorite
+    @GET("favorites/{id_user}/{id_comic}")
+    Call<Favorite> checkFavorite(@Path("id_user") String id_user,@Path("id_comic") String id_comic);
+    @POST("favorites/add")
+    Call<Void> postFavorite(@Body Favorite favorite);
+
+    @DELETE("favorites/delete/{id_f}")
+    Call<Void> deleteFavorite(@Path("id_f") String id_f);
+    @GET("favorites/{id_c}")
+    Call<List<Favorite>> getListFavoriteComic(@Path("id_c") String id_c);
+    @GET("favorites/user/{id_u}")
+
+    Call<List<Favorite>> getListFavoriteUser(@Path("id_u") String id_u);
 }

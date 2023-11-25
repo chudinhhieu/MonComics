@@ -215,6 +215,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <LinearLayout
+            android:id="@+id/btn_yt"
             android:layout_width="0dp"
             android:paddingHorizontal="10dp"
             android:gravity="center_vertical"
@@ -222,10 +223,12 @@
             android:layout_weight="0.9975"
             android:layout_height="50dp">
         <ImageView
+            android:id="@+id/img_fvr"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/baseline_favorite_24"/>
         <TextView
+            android:id="@+id/tv_slyt"
             android:layout_marginStart="5dp"
             android:gravity="center_vertical"
             android:fontFamily="@font/worksans"
