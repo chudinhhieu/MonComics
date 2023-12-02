@@ -20,9 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.doraemoncomics.Activity.SignInActivity;
 import com.example.doraemoncomics.Adapters.Admin.ImageAdapter;
 import com.example.doraemoncomics.Adapters.Admin.SpinnerGenreAdapter;
+import com.example.doraemoncomics.Api.ApiNotification;
 import com.example.doraemoncomics.Api.ApiService;
+import com.example.doraemoncomics.Api.NotificationData;
 import com.example.doraemoncomics.Api.RealPathUtil;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Genre;
@@ -186,6 +189,7 @@ public class AddComicActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Comic> call, Response<Comic> response) {
                         Toast.makeText(AddComicActivity.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                        sendNotification();
                         finish();
                     }
 
@@ -195,6 +199,23 @@ public class AddComicActivity extends AppCompatActivity {
                         Toast.makeText(AddComicActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+    }
+
+    private void sendNotification() {
+        NotificationData notificationData = new NotificationData();
+        notificationData.setData(new NotificationData.NotificationPayload("Truyện mới", "Bạn ơi đang có truyện mới đó nha!"));
+        notificationData.setTo("/topics/newcomic");
+        ApiNotification.apiNotification.sendNotification(notificationData).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(AddComicActivity.this, "Gửi thành công", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(AddComicActivity.this, "Gửi thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }

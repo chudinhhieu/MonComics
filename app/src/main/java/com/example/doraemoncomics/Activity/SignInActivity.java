@@ -1,10 +1,12 @@
 package com.example.doraemoncomics.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,11 +14,17 @@ import android.widget.Toast;
 
 import com.example.doraemoncomics.Activity.Admin.MainActivityAdmin;
 import com.example.doraemoncomics.Activity.User.MainActivity;
+import com.example.doraemoncomics.Api.ApiNotification;
 import com.example.doraemoncomics.Api.ApiService;
+import com.example.doraemoncomics.Api.NotificationData;
 import com.example.doraemoncomics.Models.User;
+import com.example.doraemoncomics.MyFirebase.MyFirebaseMessagingService;
 import com.example.doraemoncomics.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private List<User> list;
     private User userSignIn;
+    public static final String TAG = SignInActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,34 @@ public class SignInActivity extends AppCompatActivity {
         ed_matKhau = findViewById(R.id.ed_matKhau);
         btn_redangKy = findViewById(R.id.btn_redangKy);
         btn_dangNhap = findViewById(R.id.btn_dangNhap);
+        FirebaseMessaging.getInstance().subscribeToTopic("newcomic")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Subscribed";
+                        if (!task.isSuccessful()) {
+                            msg = "Subscribe failed";
+                        }
+                        Log.d(TAG, msg);
+                    }
+                });
+
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+//                            return;
+//                        }
+//
+//                        // Get new FCM registration token
+//                        String token = task.getResult();
+//
+//                        // Log and toast
+//                        Log.d(TAG, token);
+//                    }
+//                });
         ed_taiKhoan.setText("admin");
         ed_matKhau.setText("111111");
         Bundle bundle = getIntent().getExtras();
