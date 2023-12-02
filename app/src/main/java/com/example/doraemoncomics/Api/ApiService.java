@@ -5,6 +5,7 @@ import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
 import com.example.doraemoncomics.Models.Favorite;
 import com.example.doraemoncomics.Models.Genre;
+import com.example.doraemoncomics.Models.Statistical;
 import com.example.doraemoncomics.Models.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -132,6 +133,14 @@ public interface ApiService {
     @GET("favorites/{id_c}")
     Call<List<Favorite>> getListFavoriteComic(@Path("id_c") String id_c);
     @GET("favorites/user/{id_u}")
-
     Call<List<Favorite>> getListFavoriteUser(@Path("id_u") String id_u);
+
+    //  Statistical
+    @GET("favorites/top3")
+    Call<List<Statistical>> getTop3Favorites();
+    @GET("comments/top3")
+    Call<List<Statistical>> getTop3Comments();
+
+    @GET("comics/top3new")
+    Call<List<Comic>> getTop3ComicNew();
 }

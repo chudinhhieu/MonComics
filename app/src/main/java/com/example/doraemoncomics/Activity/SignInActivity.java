@@ -44,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
         ed_matKhau = findViewById(R.id.ed_matKhau);
         btn_redangKy = findViewById(R.id.btn_redangKy);
         btn_dangNhap = findViewById(R.id.btn_dangNhap);
-        ed_taiKhoan.setText("chuhieu");
+        ed_taiKhoan.setText("admin");
         ed_matKhau.setText("111111");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -54,6 +54,7 @@ public class SignInActivity extends AppCompatActivity {
                 ed_matKhau.setText(user.getPassword());
             }
         }
+
         list = new ArrayList<>();
         getListUser();
         btn_dangNhap.setOnClickListener(new View.OnClickListener() {

@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.doraemoncomics.Fragments.AccountFragment;
 import com.example.doraemoncomics.Fragments.Admin.ComicManagementFragment;
-import com.example.doraemoncomics.Fragments.Admin.StatisticalFragment;
 import com.example.doraemoncomics.Fragments.Admin.UserManagementFragment;
+import com.example.doraemoncomics.Fragments.User.HomeFragment;
 
 public class ViewPagerAdminAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdminAdapter(@NonNull FragmentManager fm, int behavior) {
@@ -20,7 +20,7 @@ public class ViewPagerAdminAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return new StatisticalFragment();
+                return new HomeFragment();
             case 1:
                 return new ComicManagementFragment();
             case 2:
@@ -28,7 +28,7 @@ public class ViewPagerAdminAdapter extends FragmentStatePagerAdapter {
             case 3:
                 return new AccountFragment();
             default:
-                return new StatisticalFragment();
+                return new HomeFragment();
 
         }
         }

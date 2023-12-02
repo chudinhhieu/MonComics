@@ -23,7 +23,6 @@ import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
 import com.example.doraemoncomics.Models.Favorite;
 import com.example.doraemoncomics.Models.Genre;
-import com.example.doraemoncomics.Models.User;
 import com.example.doraemoncomics.R;
 
 import java.util.ArrayList;
@@ -109,6 +108,12 @@ public class ComicActivity extends AppCompatActivity {
                         }
                     });
                }
+            }
+        });
+        btn_doc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         btn_xemTruoc.setOnClickListener(new View.OnClickListener() {

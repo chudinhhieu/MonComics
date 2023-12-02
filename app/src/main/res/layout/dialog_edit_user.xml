@@ -54,7 +54,7 @@
         android:backgroundTint="@color/main"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/edL_dlu_email"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_huy_dlu"

@@ -81,6 +81,7 @@ public class AddComicActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         selectedImages = new ArrayList<>();
         loadDataGenre();
+
         btn_addG_aac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +94,12 @@ public class AddComicActivity extends AppCompatActivity {
                 anhTL = dialog.findViewById(R.id.dlg_image_ag);
                 Button xacNhan = dialog.findViewById(R.id.btn_xacNhan_dlg_ag);
                 Button huy = dialog.findViewById(R.id.btn_huy_dlg_ag);
+                huy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 anhTL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -243,4 +250,5 @@ public class AddComicActivity extends AppCompatActivity {
             Glide.with(this).load(selectedImage).into(anhTL);
         }
     }
+
 }

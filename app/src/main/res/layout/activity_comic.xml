@@ -27,246 +27,268 @@
             android:textColor="@color/black"
             android:textSize="24dp" />
     </RelativeLayout>
-    <ImageView
-        android:id="@+id/ac_image_comic"
-        android:layout_width="200dp"
-        android:layout_below="@+id/aac_view1"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/tap_1" />
-    <TextView
-        android:id="@+id/tv_ac_ten"
-        android:fontFamily="@font/worksans"
-        android:textSize="24sp"
-        android:layout_below="@+id/ac_image_comic"
-        android:textColor="@color/black"
-        android:text="Tập 1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
     <ScrollView
-        android:id="@+id/view_content"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@id/tv_ac_ten"
+        android:id="@+id/acc_view2"
+        android:layout_above="@id/acc_view4"
+        android:layout_below="@+id/aac_view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ac_image_comic"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/tap_1" />
+        <TextView
+            android:id="@+id/tv_ac_ten"
+            android:fontFamily="@font/worksans"
+            android:textSize="24sp"
+            android:layout_below="@+id/ac_image_comic"
+            android:textColor="@color/black"
+            android:text="Tập 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+
         <LinearLayout
+            android:id="@+id/acc_view3"
+            android:layout_below="@id/tv_ac_ten"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp">
+                android:layout_marginBottom="7dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txt_theLoai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Thể loại: "
                     android:textColor="@color/black"
-                    android:text="Thể loại: "/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/tv_theLoai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:textColor="@color/gray" />
+                    android:fontFamily="@font/worksans"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp">
+                android:layout_marginBottom="7dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txt_mota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Mô tả: "
                     android:textColor="@color/black"
-                    android:text="Mô tả: "/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/tv_moTa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="18sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Mô tả: "
                     android:textColor="@color/gray"
-                    android:text="Mô tả: "/>
+                    android:textSize="18sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp">
+                android:layout_marginBottom="7dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txt_NXB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Năm xuất bản: "
                     android:textColor="@color/black"
-                    android:text="Năm xuất bản: "/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/tv_NXB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="18sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="2001"
                     android:textColor="@color/gray"
-                    android:text="2001"/>
+                    android:textSize="18sp" />
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="7dp">
+                android:layout_marginBottom="7dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txt_tacGia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Tác giả: "
                     android:textColor="@color/black"
-                    android:text="Tác giả: "/>
+                    android:textSize="20sp" />
+
                 <TextView
                     android:id="@+id/tv_tacGia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/worksans"
                     android:layout_marginTop="10dp"
-                    android:textSize="18sp"
+                    android:fontFamily="@font/worksans"
+                    android:text="Chu Hiếu: "
                     android:textColor="@color/gray"
-                    android:text="Chu Hiếu: "/>
+                    android:textSize="18sp" />
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-    <Button
-        android:id="@+id/btn_sua_ac"
-        android:text="Cập nhật"
-        android:layout_below="@+id/view_content"
-        android:fontFamily="@font/worksans"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/main"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_xoa_ac"
-        android:text="Xóa"
-        android:textColor="@color/white"
-        android:layout_below="@+id/view_content"
-        android:fontFamily="@font/worksans"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/red"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_xemTruoc_ac"
-        android:text="Xem trước"
-        android:fontFamily="@font/worksans"
-        android:textColor="@color/white"
-        android:layout_below="@+id/view_content"
-        android:backgroundTint="@color/main"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btn_doc_ac"
-        android:text="Đọc ngay"
-        android:textColor="@color/white"
-        android:fontFamily="@font/worksans"
-        android:layout_below="@+id/view_content"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/green"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_above="@+id/view_like"
-        android:background="@color/gray"/>
-    <LinearLayout
-        android:id="@+id/view_like"
-        android:weightSum="2"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <LinearLayout
-            android:id="@+id/btn_yt"
-            android:layout_width="0dp"
-            android:paddingHorizontal="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_weight="0.9975"
-            android:layout_height="50dp">
-        <ImageView
-            android:id="@+id/img_fvr"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/baseline_favorite_24"/>
-        <TextView
-            android:id="@+id/tv_slyt"
-            android:layout_marginStart="5dp"
-            android:gravity="center_vertical"
-            android:fontFamily="@font/worksans"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="17dp"
-            android:textColor="@color/black"
-            android:text="9999 yêu thích"/>
-        </LinearLayout>
-        <LinearLayout
-            android:background="@color/gray"
-            android:layout_width="0dp"
-            android:layout_weight="0.005"
-            android:layout_height="match_parent"/>
-        <LinearLayout
-            android:id="@+id/btn_nextBinhLuan"
-            android:layout_width="0dp"
-            android:paddingHorizontal="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_weight="0.9975"
-            android:layout_height="50dp">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/baseline_comment_24"/>
-            <TextView
-                android:id="@+id/tv_slbl"
-                android:layout_marginStart="5dp"
-                android:gravity="center"
-                android:fontFamily="@font/worksans"
+            <RelativeLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textSize="17dp"
-                android:textColor="@color/black"
-                android:text="9999 bình luận"/>
-        </LinearLayout
-            >
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_sua_ac"
+                    android:text="Cập nhật"
+                    android:fontFamily="@font/worksans"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/main"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_xoa_ac"
+                    android:text="Xóa"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/worksans"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/red"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_xemTruoc_ac"
+                    android:text="Xem trước"
+                    android:fontFamily="@font/worksans"
+                    android:textColor="@color/white"
+                    android:backgroundTint="@color/main"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btn_doc_ac"
+                    android:text="Đọc ngay"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/worksans"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@color/green"
+                    android:layout_marginEnd="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </LinearLayout>
 
+
+    </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/acc_view4"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/view_like"
+            android:background="@color/gray"/>
+        <LinearLayout
+            android:id="@+id/view_like"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <LinearLayout
+                android:id="@+id/btn_yt"
+                android:layout_width="0dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_weight="0.9975"
+                android:layout_height="50dp">
+                <ImageView
+                    android:id="@+id/img_fvr"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_favorite_24"/>
+                <TextView
+                    android:id="@+id/tv_slyt"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    android:fontFamily="@font/worksans"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:text="9999 yêu thích"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@color/gray"
+                android:layout_width="0dp"
+                android:layout_weight="0.005"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:id="@+id/btn_nextBinhLuan"
+                android:layout_width="0dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_weight="0.9975"
+                android:layout_height="50dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_comment_24"/>
+                <TextView
+                    android:id="@+id/tv_slbl"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/worksans"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:textSize="17dp"
+                    android:textColor="@color/black"
+                    android:text="9999 bình luận"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
