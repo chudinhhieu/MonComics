@@ -23,6 +23,7 @@ import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
 import com.example.doraemoncomics.Models.Favorite;
 import com.example.doraemoncomics.Models.Genre;
+import com.example.doraemoncomics.Models.MyDate;
 import com.example.doraemoncomics.R;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class ComicActivity extends AppCompatActivity {
     private Favorite favorite;
     private String savedUserId;
     private List<Favorite> favoriteList;
+    private MyDate myDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class ComicActivity extends AppCompatActivity {
         btn_nextBinhLuan = findViewById(R.id.btn_nextBinhLuan);
         btn_xemTruoc = findViewById(R.id.btn_xemTruoc_ac);
         btn_doc = findViewById(R.id.btn_doc_ac);
-
+        myDate = new MyDate();
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         savedUserId = sharedPreferences.getString("userId","1");
         String savedUsername = sharedPreferences.getString("username","chuhieu");
@@ -209,7 +211,7 @@ public class ComicActivity extends AppCompatActivity {
                     }
                 });
                 tv_ten.setText(comic.getName());
-                tv_NXB.setText(comic.getPublicationDate());
+                tv_NXB.setText(myDate.toStringVn(comic.getPublicationDate()));
                 tv_moTa.setText(comic.getDescription());
                 tv_TacGia.setText(comic.getAuthor());
                 Glide.with(ComicActivity.this)

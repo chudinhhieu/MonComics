@@ -20,11 +20,13 @@ import com.example.doraemoncomics.Activity.User.MainActivity;
 import com.example.doraemoncomics.Api.ApiService;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Comment;
+import com.example.doraemoncomics.Models.MyDate;
 import com.example.doraemoncomics.Models.User;
 import com.example.doraemoncomics.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,6 +38,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ComicsVi
     private final Context context;
     private View view;
     private String id_user;
+    private MyDate myDate;
     public CommentAdapter(List<Comment> list, Context context,String id_user) {
         this.list = list;
         this.context = context;
@@ -52,6 +55,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ComicsVi
     @Override
     public void onBindViewHolder(@NonNull ComicsViewHolder holder, int position) {
         Comment comment = list.get(position);
+        myDate = new MyDate();
+        String chuyenDoiThoiGian = myDate.getReadableTimeDifference(comment.getThoiGian());
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,6 +159,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ComicsVi
             }
         });
         holder.noidung.setText(comment.getNoiDung());
+        holder.thoiGian.setText(chuyenDoiThoiGian);
     }
 
     @Override

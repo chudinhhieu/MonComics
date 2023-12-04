@@ -2,6 +2,8 @@ package com.example.doraemoncomics.Adapters.User;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,11 @@ public class StatisticalAdapter extends RecyclerView.Adapter<StatisticalAdapter.
             @Override
             public void onResponse(Call<Comic> call, Response<Comic> response) {
                 Comic comic = response.body();
+                int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                boolean isNightMode = nightModeFlags == Configuration.UI_MODE_NIGHT_YES;
+                if (isNightMode){
+                    holder.tenTruyen.setTextColor(Color.WHITE);
+                }
                 holder.tenTruyen.setText(comic.getName());
                 Glide.with(context)
                         .load(MainActivity.ip_pixe4_image + "comic_images/cover_images/" + comic.getCoverImage())

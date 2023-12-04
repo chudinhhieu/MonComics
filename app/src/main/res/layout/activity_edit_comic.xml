@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/btn_exitne"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
@@ -101,6 +102,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_aac_namXuatBan"
                     android:layout_width="match_parent"
+                    android:editable="false"
+                    android:focusable="false"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/worksans"
                     android:hint="Năm xuất bản" />

@@ -256,9 +256,9 @@
                     android:fontFamily="@font/worksans"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:textColor="@color/black"
-                    android:text="9999 yêu thích"/>
+                    />
             </LinearLayout>
             <LinearLayout
                 android:background="@color/gray"
@@ -286,7 +286,7 @@
                     android:layout_height="50dp"
                     android:textSize="17dp"
                     android:textColor="@color/black"
-                    android:text="9999 bình luận"/>
+                   />
             </LinearLayout>
 
         </LinearLayout>

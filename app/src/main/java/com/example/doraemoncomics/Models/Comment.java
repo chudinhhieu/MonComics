@@ -1,11 +1,13 @@
 package com.example.doraemoncomics.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Comment implements Serializable {
-    private String _id,id_user,id_comic,noiDung,thoiGian;
+    private String _id,id_user,id_comic,noiDung;
+    private Date thoiGian;
 
-    public Comment(String _id, String id_user, String id_comic, String noiDung, String thoiGian) {
+    public Comment(String _id, String id_user, String id_comic, String noiDung, Date thoiGian) {
         this._id = _id;
         this.id_user = id_user;
         this.id_comic = id_comic;
@@ -55,11 +57,11 @@ public class Comment implements Serializable {
         this.noiDung = noiDung;
     }
 
-    public String getThoiGian() {
+    public Date getThoiGian() {
         return thoiGian;
     }
 
-    public void setThoiGian(String thoiGian) {
+    public void setThoiGian(Date thoiGian) {
         this.thoiGian = thoiGian;
     }
 }

@@ -53,14 +53,7 @@ public class FavoriteComicAdapter extends RecyclerView.Adapter<FavoriteComicAdap
                 Glide.with(context)
                         .load(MainActivity.ip_pixe4_image + "comic_images/cover_images/" + comic.getCoverImage())
                         .into(holder.anhBia);
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, ComicActivity.class);
-                        intent.putExtra("comic_id", comic.get_id());
-                        context.startActivity(intent);
-                    }
-                });
+
             }
 
             @Override
@@ -68,7 +61,26 @@ public class FavoriteComicAdapter extends RecyclerView.Adapter<FavoriteComicAdap
 
             }
         });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ApiService.apiService.getOneComic(favorite.getId_comic()).enqueue(new Callback<Comic>() {
+                    @Override
+                    public void onResponse(Call<Comic> call, Response<Comic> response) {
+                        Comic comic = response.body();
+                        Intent intent = new Intent(context, ComicActivity.class);
+                        intent.putExtra("comic_id", comic.get_id());
+                        context.startActivity(intent);
+                    }
 
+                    @Override
+                    public void onFailure(Call<Comic> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
     }
 
     @Override

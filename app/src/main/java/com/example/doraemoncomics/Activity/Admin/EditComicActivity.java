@@ -1,6 +1,8 @@
 package com.example.doraemoncomics.Activity.Admin;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,12 +30,14 @@ import com.example.doraemoncomics.Api.ApiService;
 import com.example.doraemoncomics.Api.RealPathUtil;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Genre;
+import com.example.doraemoncomics.Models.MyDate;
 import com.example.doraemoncomics.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -45,7 +50,7 @@ import retrofit2.Response;
 public class EditComicActivity extends AppCompatActivity {
     private Spinner spinner;
     private ArrayList<Uri> selectedImages;
-    private ImageView anhBia;
+    private ImageView anhBia,btn_exitne;
     private SpinnerGenreAdapter adapter;
     private static final int PICK_IMAGES_REQUEST = 1;
     private List<Genre> list;
@@ -59,6 +64,8 @@ public class EditComicActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private ImageDownLoadAdapter imageDownLoadAdapter;
     private Intent intent;
+    private MyDate myDate;
+    String namSX;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +75,7 @@ public class EditComicActivity extends AppCompatActivity {
         edL_aac_tacGia = findViewById(R.id.edL_aac_tacGia);
         edL_aac_namXuatBan = findViewById(R.id.edL_aac_namXuatBan);
         edL_aac_moTa = findViewById(R.id.edL_aac_moTa);
+        btn_exitne = findViewById(R.id.btn_exitne);
         ed_aac_tenTruyen= findViewById(R.id.ed_aac_tenTruyen);
         ed_aac_tacGia= findViewById(R.id.ed_aac_tacGia);
         ed_aac_linkTruyen= findViewById(R.id.ed_aac_linkTruyen);
@@ -82,6 +90,13 @@ public class EditComicActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         selectedImages = new ArrayList<>();
         intent = getIntent();
+        myDate = new MyDate();
+        btn_exitne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         ApiService.apiService.getOneComic(intent.getStringExtra("comic_id")).enqueue(new Callback<Comic>() {
             @Override
             public void onResponse(Call<Comic> call, Response<Comic> response) {
@@ -91,7 +106,7 @@ public class EditComicActivity extends AppCompatActivity {
                         .into(anhBia);
                 ed_aac_tenTruyen.setText(comic.getName());
                 ed_aac_moTa.setText(comic.getDescription());
-                ed_aac_namXuatBan.setText(comic.getPublicationDate());
+                ed_aac_namXuatBan.setText(myDate.toStringVn(comic.getPublicationDate()));
                 ed_aac_tacGia.setText(comic.getAuthor());
                 ed_aac_linkTruyen.setText(comic.getLinkCM());
                 loadDataGenre();
@@ -106,7 +121,24 @@ public class EditComicActivity extends AppCompatActivity {
         });
 
 
-
+        ed_aac_namXuatBan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DATE);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditComicActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(i, i1, i2);
+                        ed_aac_namXuatBan.setText(myDate.toStringVn(calendar.getTime()));
+                        namSX = myDate.toString(calendar.getTime());
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
 
         tv_add_anh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,10 +166,18 @@ public class EditComicActivity extends AppCompatActivity {
                 RequestBody reqLoai = RequestBody.create(MediaType.parse("multipart/form-data"),genre.get_id());
                 RequestBody reqTen = RequestBody.create(MediaType.parse("multipart/form-data"),ed_aac_tenTruyen.getText().toString().trim());
                 RequestBody reqMota = RequestBody.create(MediaType.parse("multipart/form-data"),ed_aac_moTa.getText().toString().trim());
-                RequestBody reqNXB = RequestBody.create(MediaType.parse("multipart/form-data"),ed_aac_namXuatBan.getText().toString().trim());
+                if (namSX == null){
+                    edL_aac_namXuatBan.setError("Chưa chọn năm xuất bản!");
+                    return;
+                }
+                RequestBody reqNXB = RequestBody.create(MediaType.parse("multipart/form-data"),namSX);
                 RequestBody reqTacGia = RequestBody.create(MediaType.parse("multipart/form-data"),ed_aac_tacGia.getText().toString().trim());
                 RequestBody reqLink = RequestBody.create(MediaType.parse("multipart/form-data"),ed_aac_linkTruyen.getText().toString().trim());
                 List<MultipartBody.Part> imageParts = new ArrayList<>();
+                if (selectedImages.size() == 0){
+                    Toast.makeText(EditComicActivity.this, "Chưa chọn ảnh truyện!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 for (Uri selectedUri : selectedImages) {
                     String realPath = RealPathUtil.getRealPath(EditComicActivity.this, selectedUri);
                     File imageFile = new File(realPath);
@@ -145,14 +185,23 @@ public class EditComicActivity extends AppCompatActivity {
                     MultipartBody.Part imagePart = MultipartBody.Part.createFormData("contentImage", imageFile.getName(), imageRequestBody);
                     imageParts.add(imagePart);
                 }
+                if(uri == null){
+                    Toast.makeText(EditComicActivity.this, "Chưa chọn ảnh bìa!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String strRealPath = RealPathUtil.getRealPath(EditComicActivity.this, uri);
                 File file = new File(strRealPath);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                 MultipartBody.Part part = MultipartBody.Part.createFormData("coverImage", file.getName(), requestBody);
+                ProgressDialog progressDialog = new ProgressDialog(EditComicActivity.this);
+                progressDialog.setMessage("Đang sửa truyện...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 ApiService.apiService.patchComic(comic.get_id(),reqTen,reqLoai,reqMota,reqNXB,reqTacGia,reqLink,part,imageParts).enqueue(new Callback<Comic>() {
                     @Override
                     public void onResponse(Call<Comic> call, Response<Comic> response) {
                         Toast.makeText(EditComicActivity.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                         finish();
                     }
 
@@ -160,6 +209,7 @@ public class EditComicActivity extends AppCompatActivity {
                     public void onFailure(Call<Comic> call, Throwable t) {
                         Log.d("onFailure", "onFailure: "+t);
                         Toast.makeText(EditComicActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
             }

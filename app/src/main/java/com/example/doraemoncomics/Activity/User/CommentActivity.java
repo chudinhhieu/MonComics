@@ -62,6 +62,7 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {
                         Toast.makeText(CommentActivity.this, "Bình luận thành công!", Toast.LENGTH_SHORT).show();
+                        inputEditText.setText("");
                         loadData();
                     }
 

@@ -1,9 +1,12 @@
 package com.example.doraemoncomics.Fragments.User;
 
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,7 +33,7 @@ public class HomeFragment extends Fragment {
     RecyclerView rcvn;
     RecyclerView rcvf;
     RecyclerView rcvc;
-
+    TextView td_n,td_y,td_c;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,7 +46,12 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rcvn = view.findViewById(R.id.rcv_new);
         rcvf = view.findViewById(R.id.rcv_topf);
+        td_n = view.findViewById(R.id.td_n);
+        td_y = view.findViewById(R.id.td_y);
+        td_c = view.findViewById(R.id.td_c);
         rcvc = view.findViewById(R.id.rcv_topc);
+        checkDarkMode();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         LinearLayoutManager layoutManagerf = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         LinearLayoutManager layoutManagern = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
@@ -51,6 +59,17 @@ public class HomeFragment extends Fragment {
         rcvc.setLayoutManager(layoutManager);
         rcvn.setLayoutManager(layoutManagern);
         loadData();
+    }
+
+    private void checkDarkMode() {
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        boolean isNightMode = nightModeFlags == Configuration.UI_MODE_NIGHT_YES;
+        if (isNightMode){
+            td_n.setTextColor(Color.WHITE);
+            td_c.setTextColor(Color.WHITE);
+            td_y.setTextColor(Color.WHITE);
+        }
+
     }
 
     private void loadData() {

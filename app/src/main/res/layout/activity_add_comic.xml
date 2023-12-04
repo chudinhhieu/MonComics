@@ -116,8 +116,11 @@
                     android:id="@+id/ed_aac_namXuatBan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:focusable="false"
                     android:fontFamily="@font/worksans"
-                    android:hint="Năm xuất bản" />
+                    android:hint="Năm xuất bản"
+                    android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edL_aac_tacGia"

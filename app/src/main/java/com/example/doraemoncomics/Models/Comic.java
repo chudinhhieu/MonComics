@@ -1,6 +1,7 @@
 package com.example.doraemoncomics.Models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class Comic implements Serializable {
@@ -9,13 +10,13 @@ public class Comic implements Serializable {
     private String name;
     private String idGenre;
     private String description;
-    private String publicationDate;
+    private Date publicationDate;
     private String author;
     private String linkCM;
     private String coverImage;
     private List<String> contentImage;
 
-    public Comic(String _id, String name, String idGenre, String description, String publicationDate, String author, String linkCM, String coverImage, List<String> contentImage) {
+    public Comic(String _id, String name, String idGenre, String description, Date publicationDate, String author, String linkCM, String coverImage, List<String> contentImage) {
         this._id = _id;
         this.name = name;
         this.idGenre = idGenre;
@@ -59,11 +60,11 @@ public class Comic implements Serializable {
         this.description = description;
     }
 
-    public String getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(String publicationDate) {
+    public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
 

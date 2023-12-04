@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,12 +32,14 @@ import com.example.doraemoncomics.Api.NotificationData;
 import com.example.doraemoncomics.Api.RealPathUtil;
 import com.example.doraemoncomics.Models.Comic;
 import com.example.doraemoncomics.Models.Genre;
+import com.example.doraemoncomics.Models.MyDate;
 import com.example.doraemoncomics.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -58,6 +63,8 @@ public class AddComicActivity extends AppCompatActivity {
     private Uri uri, uriTL;
     private TextView tv_add_anh;
     private ImageAdapter imageAdapter;
+    MyDate myDate;
+    String namSX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +91,7 @@ public class AddComicActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         selectedImages = new ArrayList<>();
         loadDataGenre();
-
+        myDate = new MyDate();
         btn_addG_aac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,27 +122,55 @@ public class AddComicActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         RequestBody reqTen = RequestBody.create(MediaType.parse("multipart/form-data"), inputTen.getText().toString().trim());
                         RequestBody reqMota = RequestBody.create(MediaType.parse("multipart/form-data"), inputMota.getText().toString().trim());
+                        if (uriTL == null) {
+                            Toast.makeText(AddComicActivity.this, "Chưa chọn ảnh!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         String strRealPath = RealPathUtil.getRealPath(AddComicActivity.this, uriTL);
                         File file = new File(strRealPath);
                         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                         MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
+                        ProgressDialog progressDialog = new ProgressDialog(AddComicActivity.this);
+                        progressDialog.setMessage("Đang thêm thể loại...");
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
                         ApiService.apiService.postGenre(reqTen, reqMota, part).enqueue(new Callback<Genre>() {
                             @Override
                             public void onResponse(Call<Genre> call, Response<Genre> response) {
                                 Toast.makeText(AddComicActivity.this, "Thêm thành công!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
+                                progressDialog.dismiss();
                                 loadDataGenre();
                             }
 
                             @Override
                             public void onFailure(Call<Genre> call, Throwable t) {
                                 Toast.makeText(AddComicActivity.this, "Thêm thất bại!" + t, Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
                             }
                         });
 
                     }
                 });
                 dialog.show();
+            }
+        });
+        ed_aac_namXuatBan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int day = calendar.get(Calendar.DATE);
+                int month = calendar.get(Calendar.MONTH);
+                int year = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddComicActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        calendar.set(i, i1, i2);
+                        ed_aac_namXuatBan.setText(myDate.toStringVn(calendar.getTime()));
+                        namSX = myDate.toString(calendar.getTime());
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
             }
         });
         btn_exit_aac.setOnClickListener(new View.OnClickListener() {
@@ -170,10 +205,18 @@ public class AddComicActivity extends AppCompatActivity {
                 RequestBody reqLoai = RequestBody.create(MediaType.parse("multipart/form-data"), genre.get_id());
                 RequestBody reqTen = RequestBody.create(MediaType.parse("multipart/form-data"), ed_aac_tenTruyen.getText().toString().trim());
                 RequestBody reqMota = RequestBody.create(MediaType.parse("multipart/form-data"), ed_aac_moTa.getText().toString().trim());
-                RequestBody reqNXB = RequestBody.create(MediaType.parse("multipart/form-data"), ed_aac_namXuatBan.getText().toString().trim());
+                if (namSX == null) {
+                    edL_aac_namXuatBan.setError("Chưa chọn năm xuất bản!");
+                    return;
+                }
+                RequestBody reqNXB = RequestBody.create(MediaType.parse("multipart/form-data"), namSX);
                 RequestBody reqTacGia = RequestBody.create(MediaType.parse("multipart/form-data"), ed_aac_tacGia.getText().toString().trim());
                 RequestBody reqLink = RequestBody.create(MediaType.parse("multipart/form-data"), ed_aac_linkTruyen.getText().toString().trim());
                 List<MultipartBody.Part> imageParts = new ArrayList<>();
+                if (selectedImages.size() == 0){
+                    Toast.makeText(AddComicActivity.this, "Chưa chọn ảnh truyện!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 for (Uri selectedUri : selectedImages) {
                     String realPath = RealPathUtil.getRealPath(AddComicActivity.this, selectedUri);
                     File imageFile = new File(realPath);
@@ -181,15 +224,24 @@ public class AddComicActivity extends AppCompatActivity {
                     MultipartBody.Part imagePart = MultipartBody.Part.createFormData("contentImage", imageFile.getName(), imageRequestBody);
                     imageParts.add(imagePart);
                 }
+                if (uri == null) {
+                    Toast.makeText(AddComicActivity.this, "Chưa chọn ảnh bìa!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String strRealPath = RealPathUtil.getRealPath(AddComicActivity.this, uri);
                 File file = new File(strRealPath);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                 MultipartBody.Part part = MultipartBody.Part.createFormData("coverImage", file.getName(), requestBody);
+                ProgressDialog progressDialog = new ProgressDialog(AddComicActivity.this);
+                progressDialog.setMessage("Đang thêm truyện...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 ApiService.apiService.postComic(reqTen, reqLoai, reqMota, reqNXB, reqTacGia, reqLink, part, imageParts).enqueue(new Callback<Comic>() {
                     @Override
                     public void onResponse(Call<Comic> call, Response<Comic> response) {
                         Toast.makeText(AddComicActivity.this, "Thành công!", Toast.LENGTH_SHORT).show();
                         sendNotification();
+                        progressDialog.dismiss();
                         finish();
                     }
 
@@ -197,6 +249,7 @@ public class AddComicActivity extends AppCompatActivity {
                     public void onFailure(Call<Comic> call, Throwable t) {
                         Log.d("onFailure", "onFailure: " + t);
                         Toast.makeText(AddComicActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 });
             }
@@ -210,12 +263,10 @@ public class AddComicActivity extends AppCompatActivity {
         ApiNotification.apiNotification.sendNotification(notificationData).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddComicActivity.this, "Gửi thành công", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddComicActivity.this, "Gửi thất bại", Toast.LENGTH_SHORT).show();
             }
         });
     }
